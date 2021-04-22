@@ -1,0 +1,29 @@
+const Discord = require("discord.js")
+const botconfig = require("../settings.json");
+
+module.exports.run = async (bot, message, args, options) => {
+    var guildIDData = options.active.get(message.guild.id);
+    if(!guildIDData) return message.channel.send("hoyt");
+
+    var queue = quildIDData.queue;
+    var nowPlaying = queue[0];
+
+    var response = `Şu assssssss ${nowPlaying.songTitle}  ||  ${nowPlaying.requester} tarafından. \n\n queue: \n`;
+ 
+    for (let i = 0; i < queue.length; i++) {
+        
+        response += `${i}, ${queue[i].songTitle} ekelenenene ${queue[i].requester}\n`;
+
+    }
+
+    message.channel.send(response);
+    
+}
+
+module.exports.config = {
+    name: "sıra",
+    description: "",
+    usage: "z.sıra",
+    accessableby: "Üyeler",
+    aliases: ['s']
+}
